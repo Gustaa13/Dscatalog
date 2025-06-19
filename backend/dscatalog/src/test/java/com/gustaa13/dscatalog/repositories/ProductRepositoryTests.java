@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.gustaa13.dscatalog.entities.Product;
-import com.gustaa13.dscatalog.tests.ProductFactory;
+import com.gustaa13.dscatalog.tests.Factory;
 
 @DataJpaTest
 public class ProductRepositoryTests {
@@ -41,7 +41,7 @@ public class ProductRepositoryTests {
     @Test
     public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
 
-        Product product = ProductFactory.createProduct();
+        Product product = Factory.createProduct();
         product.setId(null);
 
         product = repository.save(product);
