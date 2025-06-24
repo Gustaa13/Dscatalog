@@ -20,6 +20,8 @@ import com.gustaa13.dscatalog.dto.UserDTO;
 import com.gustaa13.dscatalog.dto.UserInsertDTO;
 import com.gustaa13.dscatalog.services.UserService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping(value = "/users")
 public class UserResource {
@@ -44,7 +46,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert(@RequestBody UserInsertDTO userInsertDTO) {
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO userInsertDTO) {
 
         UserDTO userDTO = service.insert(userInsertDTO);
 
@@ -55,7 +57,7 @@ public class UserResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> update(@Valid @PathVariable Long id, @RequestBody UserDTO userDTO) {
 
         userDTO = service.update(id, userDTO);
 
