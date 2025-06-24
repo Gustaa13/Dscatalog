@@ -1,75 +1,45 @@
 package com.gustaa13.dscatalog.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "category")
-public class Category implements Serializable {
+@Table(name = "role")
+public class Role implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String authority;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant createdAt;
-
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant updatedAt;
-
-    @ManyToMany(mappedBy = "categories")
-    private Set<Product> products = new HashSet<>();
-
-    public Category() {
+    public Role() {
 
     }
 
-    public Category(Long id, String name) {
+    public Role(Long id, String authority) {
         this.id = id;
-        this.name = name;
+        this.authority = authority;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getAuthority() {
+        return authority;
     }
 
-    @PrePersist
-    public void prePersist() {
-        createdAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void PreUpdate() {
-        updatedAt = Instant.now();
-    }
-
-    public Set<Product> getProducts() {
-        return products;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override
@@ -88,7 +58,7 @@ public class Category implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Category other = (Category) obj;
+        Role other = (Role) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -96,4 +66,5 @@ public class Category implements Serializable {
             return false;
         return true;
     }
+
 }
